@@ -1,0 +1,16 @@
+﻿@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/bower_components/requirejs/require.js"></script>
+    <script>
+        require(['/Scripts/require.config.js'], function() {
+            require(['/Scripts/Pages/Home/startup.js']);
+        });
+    </script>
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br/>
+<div data-bind="component: {name: route().component}"></div>

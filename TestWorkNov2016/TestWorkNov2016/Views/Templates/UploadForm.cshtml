@@ -1,0 +1,13 @@
+﻿
+@{
+    Layout = null;
+}
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label for="inputFile">File input (txt)</label>
+        <input type="file" id="inputFile" accept="txt" data-bind="value: selectedFileName">
+        <p class="help-block">Select a text file to upload</p>
+    </div>
+    <button type="submit" class="btn btn-default" data-bind="enable: canUpload, click: uploadFile, attr:{title: uploadBtnTooltip}">Upload</button>
+</form>

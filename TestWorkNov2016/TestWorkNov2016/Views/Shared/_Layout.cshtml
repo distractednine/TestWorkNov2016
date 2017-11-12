@@ -1,0 +1,45 @@
+﻿@{
+    var appName = "My ASP.NET Application";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - appName</title>
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink(appName, "Index", "Home", new {@class = "navbar-brand"})
+            </div>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li data-bind="css: {'active': isTabSelected(tabNames.distance)}">
+            <a href="#distance" data-toggle="tab">Distance calculation</a>
+        </li>
+        <li data-bind="css: {'active': isTabSelected(tabNames.upload)}">
+            <a href="#upload" data-toggle="tab">Upload data</a>
+        </li>
+    </ul>
+
+    <div class="container body-content">
+        <div class="content-main">
+            @RenderBody()
+        </div>
+        @RenderSection("scripts", false)
+        <hr/>
+        <footer>
+            <p>&copy; @DateTime.Now.Year - @appName</p>
+        </footer>
+    </div>
+
+</body>
+</html>
