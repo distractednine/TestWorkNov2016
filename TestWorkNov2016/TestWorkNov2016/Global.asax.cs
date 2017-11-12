@@ -14,6 +14,7 @@ namespace TestWorkNov2016
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            UnityConfig.RegisterTypes();
         }
     }
 }
