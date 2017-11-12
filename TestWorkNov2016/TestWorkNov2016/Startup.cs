@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using Microsoft.Owin;
 using Owin;
 using Microsoft.Practices.Unity;
-using Unity.AspNet.WebApi;
 
 [assembly: OwinStartup(typeof(TestWorkNov2016.Startup))]
 
@@ -16,9 +15,9 @@ namespace TestWorkNov2016
     {
         public void Configuration(IAppBuilder app)
         {
-            var container = UnityConfig.Container;
+            var container = UnityConfig.GetConfiguredContainer();
 
-            //DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+            DependencyResolver.SetResolver(container);
         }
     }
 }
