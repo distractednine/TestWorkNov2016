@@ -152,6 +152,17 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\Components\distanceForm.js" />
+    <Content Include="Scripts\Components\uploadForm.js" />
+    <Content Include="Scripts\Pages\Home\startup.js" />
+    <Content Include="Scripts\require.config.js" />
+    <Content Include="Scripts\Utils\distanceCalculator.js" />
+    <Content Include="Scripts\Utils\endpoints.js" />
+    <Content Include="Scripts\Utils\router.js" />
+    <Content Include="Scripts\Utils\serverDataProvider.js" />
+    <Content Include="Scripts\Utils\utilityFunctions.js" />
+    <Content Include="Scripts\ViewModels\distanceFormViewModel.js" />
+    <Content Include="Scripts\ViewModels\uploadFormViewModel.js" />
     <Content Include="UserData\stops.txt" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -160,6 +171,8 @@
     <Content Include="Views\Templates\UploadForm.cshtml" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Scripts\.bowerrc" />
+    <Content Include="Scripts\bower.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -203,9 +216,7 @@
     <Compile Include="Storage\IMetroStationStorage.cs" />
     <Compile Include="Storage\MetroStationStorage.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

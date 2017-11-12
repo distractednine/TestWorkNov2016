@@ -240,3 +240,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/TestWorkNov2016/TestWorkNov2016/Scripts/wwwroot/lib

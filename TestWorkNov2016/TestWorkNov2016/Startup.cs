@@ -17,7 +17,7 @@ namespace TestWorkNov2016
         {
             var container = UnityConfig.GetConfiguredContainer();
 
-            DependencyResolver.SetResolver(container);
+            //DependencyResolver.SetResolver(container);
         }
     }
 }
