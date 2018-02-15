@@ -94,3 +94,143 @@ WITH EmpsCTE AS
 )
 SELECT empid, mgrid, firstname, lastname
 FROM EmpsCTE;
+
+
+
+
+
+
+-- 4-1
+-- Create a view that returns the total qty
+-- for each employee and year
+-- Tables involved: Sales.Orders and Sales.OrderDetails
+
+IF OBJECT_ID('Sales.VEmpOrders') IS NOT NULL
+DROP VIEW Sales.VEmpOrders;
+GO
+
+create view Sales.VEmpOrders
+AS
+(
+	select o.empid, year(o.orderdate) as orderyear, sum(od.qty) as total_qty
+	from Sales.Orders as o
+	join Sales.OrderDetails as od
+	on o.orderid = od.orderid
+	group by o.empid, year(o.orderdate) 
+);
+go
+
+select ve.empid, ve.orderyear, ve.total_qty 
+from Sales.VEmpOrders as ve
+order by ve.empid, ve.orderyear
+
+
+
+
+
+
+
+-- 4-2 (Optional, Advanced)
+-- Write a query against Sales.VEmpOrders
+-- that returns the running qty for each employee and year
+-- Tables involved: TSQL2012 database, Sales.VEmpOrders view
+
+
+IF OBJECT_ID('Sales.VEmpOrders') IS NOT NULL
+DROP VIEW Sales.VEmpOrders;
+GO
+
+create view Sales.VEmpOrders
+AS
+(
+	select o.empid,  year(o.orderdate) as orderyear, sum(od.qty) as total_qty
+	from Sales.Orders as o
+	join Sales.OrderDetails as od
+	on o.orderid = od.orderid
+	group by o.empid, year(o.orderdate) 
+);
+go
+
+select ve.empid, ve.orderyear, ve.total_qty, 
+	(select sum(ve2.total_qty) 
+	from Sales.VEmpOrders as ve2 
+	where ve2.orderyear <= ve.orderyear and ve.empid = ve2.empid) as runqty
+from Sales.VEmpOrders as ve
+order by ve.empid, ve.orderyear
+
+
+
+
+
+-- 5-1
+-- Create an inline function that accepts as inputs
+-- a supplier id (@supid AS INT), 
+-- and a requested number of products (@n AS INT)
+-- The function should return @n products with the highest unit prices
+-- that are supplied by the given supplier id
+-- Tables involved: Production.Products
+
+IF OBJECT_ID('Production.TopProducts') IS NOT NULL
+DROP function Production.TopProducts;
+GO
+
+create function Production.TopProducts (@supid AS INT, @n AS INT)
+returns table
+AS
+return
+	select top(@n) p.productid,  p.productname, p.unitprice
+	from Production.Products as p
+	where p.supplierid = @supid
+	order by p.unitprice desc
+go
+
+select * from Production.TopProducts(5, 2);
+
+
+
+
+
+
+
+
+-- 5-1
+-- Create an inline function that accepts as inputs
+-- a supplier id (@supid AS INT), 
+-- and a requested number of products (@n AS INT)
+-- The function should return @n products with the highest unit prices
+-- that are supplied by the given supplier id
+-- Tables involved: Production.Products
+
+IF OBJECT_ID('Production.TopProducts') IS NOT NULL
+DROP function Production.TopProducts;
+GO
+
+create function Production.TopProducts (@supid AS INT, @n AS INT)
+returns table
+AS
+return
+	select top(@n) p.productid,  p.productname, p.unitprice
+	from Production.Products as p
+	where p.supplierid = @supid
+	order by p.unitprice desc
+go
+
+
+SELECT distinct s.supplierid, s.companyname, p.productid,  p.productname, p.unitprice
+FROM Production.Suppliers AS s
+CROSS APPLY
+	Production.TopProducts(s.supplierid, 2) as p
+order by s.companyname;
+
+
+
+
+
+
+
+
+--  code for cleanup:
+IF OBJECT_ID('Sales.VEmpOrders') IS NOT NULL
+  DROP VIEW Sales.VEmpOrders;
+IF OBJECT_ID('Production.TopProducts') IS NOT NULL
+  DROP FUNCTION Production.TopProducts;

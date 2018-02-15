@@ -55,8 +55,11 @@
     <Content Include="Chapter 03 - Joins - my solutions.sql" />
     <Content Include="Chapter 03 - Joins - Exercises.sql" />
     <Content Include="Chapter 05 - Table Expressions - my solutions.sql" />
+    <Content Include="Chapter 06 - Set Operators - my solutions.sql" />
     <Content Include="Chapter 06 - Set Operators - Exercises.sql" />
     <Content Include="Chapter 07 - Beyond the Fundamentals of Querying - Exercises.sql" />
+    <Content Include="Chapter 07 - Beyond the Fundamentals of Querying - my solutions.sql" />
+    <Content Include="Chapter 08 - Data Modification - Exercises.sql" />
     <Content Include="temp.sql" />
     <Content Include="Chapter 04 - Subqueries - my solutions.sql" />
     <Content Include="Chapter 04 - Subqueries - Exercises.sql" />
