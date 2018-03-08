@@ -43,9 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comparers.cs" />
     <Compile Include="MergeSort.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickSort.cs" />
+    <Compile Include="SorterBase.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>

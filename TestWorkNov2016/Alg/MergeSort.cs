@@ -1,32 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Alg
 {
-    internal class MergeSorter<T> where T : IComparable
+    internal class MergeSorter<T> : SorterBase<T>
+        where T : IComparable
     {
-        private Func<T, T, bool> comparerFunc;
+        public override String SortName => "Merge Sort";
 
-        private readonly Func<T, T, bool> ascComparer = (T left, T right) => left.CompareTo(right) < 0;
-
-        private readonly Func<T, T, bool> descComparer = (T left, T right) => left.CompareTo(right) > 0;
-
-        public ICollection<T> Sort(ICollection<T> sourceCollection, bool isAscSort)
-        {
-            if (sourceCollection == null || !sourceCollection.Any())
-            {
-                throw new ApplicationException("The source enumeration must have at least one element.");
-            }
-
-            comparerFunc = isAscSort ? ascComparer : descComparer;
-
-            var sorted = Sort(sourceCollection.ToArray());
-
-            return sorted;
-        }
-
-        private T[] Sort(T[] sourceArr)
+        protected override T[] Sort(T[] sourceArr)
         {
             // split on 2 until there are 2 items
             if (sourceArr.Length > 2)
@@ -53,7 +35,7 @@ namespace Alg
             }
 
             // return sorted array of 2 items
-            var leftItemIsBigger = comparerFunc(sourceArr[0], sourceArr[1]);
+            var leftItemIsBigger = ComparerFunc(sourceArr[1], sourceArr[0]);
 
             return leftItemIsBigger ?
                 new[] { sourceArr[1], sourceArr[0] } :
@@ -94,7 +76,7 @@ namespace Alg
                     continue;
                 }
 
-                var isLeftItemBigger = comparerFunc(leftArr[leftPivot], rightArr[rightPivot]);
+                var isLeftItemBigger = ComparerFunc(rightArr[rightPivot], leftArr[leftPivot]);
 
                 if (!isLeftItemBigger)
                 {
